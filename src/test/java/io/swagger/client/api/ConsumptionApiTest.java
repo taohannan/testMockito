@@ -13,18 +13,26 @@
 
 package io.swagger.client.api;
 
+import com.squareup.okhttp.Call;
 import io.swagger.client.ApiClient;
 import io.swagger.client.ApiException;
+import io.swagger.client.ApiResponse;
 import io.swagger.client.model.Entity;
 import io.swagger.client.model.EntityList;
 import io.swagger.client.model.ListOfCounterparties;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.Ignore;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.lang.reflect.Type;
+
+import static org.hamcrest.CoreMatchers.*;
+import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.*;
+
 
 /**
  * API tests for ConsumptionApi
@@ -32,8 +40,15 @@ import java.util.Map;
 @Ignore
 public class ConsumptionApiTest {
 
-    private final ConsumptionApi api = new ConsumptionApi();
+    public ConsumptionApi api ;
+    private ApiClient apiClient;
 
+
+    @Before
+    public void setUp() throws Exception {
+
+        MockitoAnnotations.initMocks(this);
+    }
 
     /**
      * Document Retrieval API
@@ -47,8 +62,15 @@ public class ConsumptionApiTest {
     public void getDocumentByIdTest() throws ApiException {
         String BIC = null;
         String documentId = null;
+
+        apiClient = Mockito.mock(ApiClient.class);
+        api = new ConsumptionApi(apiClient);
+
+        //Mockito.when(apiClient.execute(any(Call.class),any(Type.class))).thenReturn(ApiResponse)
+
         Object response = api.getDocumentById(BIC, documentId);
 
+        assertThat(response, is(notNullValue()));
         // TODO: test validations
     }
     

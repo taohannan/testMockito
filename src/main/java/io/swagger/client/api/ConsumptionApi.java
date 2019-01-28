@@ -152,7 +152,7 @@ public class ConsumptionApi {
     public ApiResponse<Object> getDocumentByIdWithHttpInfo(String BIC, String documentId) throws ApiException {
         com.squareup.okhttp.Call call = getDocumentByIdValidateBeforeCall(BIC, documentId, null, null);
         Type localVarReturnType = new TypeToken<Object>(){}.getType();
-        return apiClient.execute(call, localVarReturnType);
+        return apiClient.execute(call,localVarReturnType);
     }
 
     /**
